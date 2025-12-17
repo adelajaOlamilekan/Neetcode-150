@@ -1,7 +1,11 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        nums_len = len(nums)
-        for i in range(nums_len):
-            for j in range(i+1, nums_len):
-                if nums[i] + nums[j] == target:
-                    return [i, j]  
+        first_number_map = dict()
+
+        for i in range(len(nums)):
+            first_number = target - nums[i]
+            first_number_index = first_number_map.get(first_number, None)
+            if first_number_index != None:
+                return [first_number_index, i]
+            else:
+                first_number_map[nums[i]] = i 
